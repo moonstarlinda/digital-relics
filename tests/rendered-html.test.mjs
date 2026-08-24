@@ -31,6 +31,20 @@ test("renders the overview as the site entry", async () => {
   assert.match(html, /href="\/owl-zun"/);
   assert.match(html, /href="\/zodiac-tiger"/);
   assert.match(html, /href="\/water-moon-guanyin"/);
+  assert.match(html, /href="\/notes"[^>]*>创作手记/);
+});
+
+test("renders the project notes", async () => {
+  const response = await render("/notes");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Digital Relics — 创作手记<\/title>/);
+  assert.match(html, /「作品的由来」/);
+  assert.match(html, /「展品的选择」/);
+  assert.match(html, /「作者的倔强」/);
+  assert.match(html, /数字重生·鸮卣/);
+  assert.match(html, /src="\/notes\/scanning-course\.jpeg"/);
+  assert.match(html, /href="\/"[^>]*>器物总览/);
 });
 
 const detailRoutes = [

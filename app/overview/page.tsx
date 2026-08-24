@@ -48,6 +48,7 @@ export default function OverviewPage() {
         <p className="overview-kicker">TRUE SCALE · 真实尺度</p>
         <h1 id="overview-title">数字遗存</h1>
         <p className="overview-description">三件器物依实际高度比例呈现。</p>
+        <a className="overview-notes-link" href={pageHref("/notes")}>创作手记</a>
       </section>
 
       <p className="overview-entry-hint">点击器物，观看细节</p>

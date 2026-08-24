@@ -158,6 +158,27 @@ html:has(.capture-stage) body {
   color: #69645b;
 }
 
+.overview-notes-link {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 8px 0 9px;
+  border-bottom: 1px solid var(--line);
+  color: #8b857a;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: color .35s, border-color .35s;
+}
+
+.overview-notes-link:hover,
+.overview-notes-link:focus-visible {
+  color: var(--ink);
+  border-color: var(--ink);
+  outline: none;
+}
+
 .overview-entry-hint {
   position: absolute;
   z-index: 3;
@@ -172,6 +193,181 @@ html:has(.capture-stage) body {
   font-family: var(--font-geist-sans), sans-serif;
   font-size: 11px;
   letter-spacing: .17em;
+}
+
+html:has(.notes-page),
+html:has(.notes-page) body {
+  min-height: 100%;
+  overflow: auto;
+  background: #100f0d;
+}
+
+.notes-page {
+  min-height: 100svh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 68% 38%, rgba(113,89,58,.07), transparent 34%),
+    linear-gradient(180deg, #0d0c0a, #11100e);
+}
+
+.notes-page::before {
+  content: "";
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  border-bottom: 1px solid rgba(215,208,193,.06);
+  background: rgba(13,12,10,.94);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.notes-header {
+  position: fixed;
+  pointer-events: auto;
+}
+
+.notes-header .wordmark {
+  margin: 0;
+  text-decoration: none;
+}
+
+.notes-detail-nav {
+  position: fixed;
+}
+
+.notes-spread {
+  display: block;
+  width: min(820px, calc(100% - 124px));
+  margin: 0 auto;
+  padding: 108px 0 72px;
+}
+
+.notes-left,
+.notes-right {
+  min-width: 0;
+}
+
+.notes-left {
+  display: block;
+  padding: 4vh 0 0;
+}
+
+.notes-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 30px;
+  margin-top: 30px;
+  padding: 0;
+  border-left: 0;
+}
+
+.notes-title-block { margin-bottom: 4vh; }
+
+.notes-kicker {
+  margin: 0 0 16px;
+  color: #817b70;
+  font-size: 9px;
+  letter-spacing: .24em;
+}
+
+.notes-title-block h1 {
+  margin: 0;
+  font-family: var(--archaic);
+  font-size: clamp(34px, 3.7vw, 52px);
+  font-weight: 400;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-align: center;
+}
+
+.notes-photo {
+  float: right;
+  width: 32%;
+  margin: 0 0 18px 25px;
+}
+
+.notes-photo-frame {
+  overflow: hidden;
+  border: 1px solid rgba(215,208,193,.12);
+  background:
+    radial-gradient(circle at 61% 72%, rgba(48,61,109,.14), transparent 18%),
+    rgba(215,208,193,.018);
+}
+
+.notes-photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.notes-copy-section {
+  display: block;
+}
+
+.notes-section-label {
+  margin: 0 0 9px;
+  color: #8d857a;
+  font-family: var(--archaic);
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.5;
+  letter-spacing: .08em;
+  text-align: center;
+}
+
+.notes-copy-section > p:not(.notes-section-label) {
+  margin: 0 0 10px;
+  color: #9a9387;
+  font-family: var(--archaic);
+  font-size: clamp(12px, 1.05vw, 15px);
+  line-height: 1.8;
+  letter-spacing: .025em;
+  text-indent: 2em;
+}
+
+.notes-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 48px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(215,208,193,.12);
+  color: #5f5a52;
+  font-size: 8px;
+  letter-spacing: .16em;
+}
+
+.notes-date time {
+  color: #817a70;
+  font-family: var(--archaic);
+  font-size: 13px;
+  letter-spacing: .08em;
+}
+
+@media (max-width: 720px) {
+  .notes-spread {
+    display: block;
+    width: calc(100% - 44px);
+    padding: 104px 0 46px;
+  }
+  .notes-left { padding: 0; }
+  .notes-right {
+    gap: 34px;
+    margin-top: 34px;
+    padding: 0;
+    border-top: 0;
+    border-left: 0;
+  }
+  .notes-title-block { margin-bottom: 42px; }
+  .notes-title-block h1 { font-size: 38px; }
+  .notes-photo { float: none; width: 100%; margin: 0 0 28px; }
+  .notes-photo-frame { aspect-ratio: 4 / 3; }
+  .notes-section-label { margin-bottom: 12px; font-size: 18px; }
+  .notes-copy-section > p:not(.notes-section-label) { font-size: 15px; line-height: 1.95; }
+  .notes-date { margin: 20px 0 0; padding: 22px 0 0; }
 }
 
 .overview-scroll,
