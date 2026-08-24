@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import RelicExperience, { type RelicConfig } from "../RelicExperience";
 
+const assetPath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Digital Relics — 水月观音",
   description: "宋代十二世纪水月观音，从扫描数据中重新显形。",
 };
 
 const waterMoonGuanyin: RelicConfig = {
-  modelUrl: "/water-moon-guanyin.glb",
+  modelUrl: `${assetPath}/water-moon-guanyin.glb`,
   pointCount: 110000,
   objectNumber: "003",
   title: "水月观音",

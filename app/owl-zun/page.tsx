@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import RelicExperience, { type RelicConfig } from "../RelicExperience";
 
+const assetPath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Digital Relics — 鸮尊",
   description: "商代晚期鸮形青铜尊，从扫描数据中重新显形。",
 };
 
 const owlZun: RelicConfig = {
-  modelUrl: "/owl-zun.glb",
+  modelUrl: `${assetPath}/owl-zun.glb`,
   pointCount: 85000,
   objectNumber: "001",
   title: "鸮尊",

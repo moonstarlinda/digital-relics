@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
@@ -9,6 +8,8 @@ import { MeshSurfaceSampler } from "three/examples/jsm/math/MeshSurfaceSampler.j
 
 type ViewMode = "points" | "threshold" | "solid";
 const TRAIL_COUNT = 10;
+const sitePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const pageHref = (path: string) => sitePath ? `${sitePath}${path === "/" ? "/" : `${path}.html`}` : path;
 
 export type RelicConfig = {
   modelUrl: string;
@@ -221,7 +222,7 @@ export default function RelicExperience({ config }: { config: RelicConfig }) {
     <div ref={mountRef} className="relic-stage" aria-label={config.ariaLabel} />
     <header className="masthead"><div className="wordmark">DIGITAL RELICS</div></header>
     <nav className="detail-nav" aria-label="详情页导航">
-      <Link className="overview-link" href="/">器物总览</Link>
+      <a className="overview-link" href={pageHref("/")}>器物总览</a>
       <button className="catalog-trigger" onClick={() => { setAboutOpen(false); setCatalogOpen((open) => !open); }} aria-expanded={catalogOpen}>目录 <span>{catalogOpen ? "－" : "＋"}</span></button>
     </nav>
     <section className={`caption ${aboutOpen ? "expanded" : ""}`}>
@@ -251,9 +252,9 @@ export default function RelicExperience({ config }: { config: RelicConfig }) {
       <button className="catalog-close" onClick={() => setCatalogOpen(false)} aria-label="关闭目录">收起</button>
       <h2>器物目录</h2>
       <nav aria-label="器物目录">
-        <Link href="/owl-zun" className={config.objectNumber === "001" ? "active" : ""}><span>鸮尊</span><small>商代晚期 · 约公元前 13–12 世纪</small></Link>
-        <Link href="/zodiac-tiger" className={config.objectNumber === "002" ? "active" : ""}><span>生肖虎俑</span><small>北魏 · 6 世纪</small></Link>
-        <Link href="/water-moon-guanyin" className={config.objectNumber === "003" ? "active" : ""}><span>水月观音</span><small>宋代 · 12 世纪</small></Link>
+        <a href={pageHref("/owl-zun")} className={config.objectNumber === "001" ? "active" : ""}><span>鸮尊</span><small>商代晚期 · 约公元前 13–12 世纪</small></a>
+        <a href={pageHref("/zodiac-tiger")} className={config.objectNumber === "002" ? "active" : ""}><span>生肖虎俑</span><small>北魏 · 6 世纪</small></a>
+        <a href={pageHref("/water-moon-guanyin")} className={config.objectNumber === "003" ? "active" : ""}><span>水月观音</span><small>宋代 · 12 世纪</small></a>
       </nav>
     </aside>
     {catalogOpen && <button className="about-scrim" onClick={() => setCatalogOpen(false)} aria-label="关闭目录" />}

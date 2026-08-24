@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import RelicExperience, { type RelicConfig } from "../RelicExperience";
 
+const assetPath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Digital Relics — 生肖虎俑",
   description: "北魏十二生肖虎俑，从扫描数据中重新显形。",
 };
 
 const zodiacTiger: RelicConfig = {
-  modelUrl: "/zodiac-tiger.glb",
+  modelUrl: `${assetPath}/zodiac-tiger.glb`,
   pointCount: 78000,
   objectNumber: "002",
   title: "生肖虎俑",

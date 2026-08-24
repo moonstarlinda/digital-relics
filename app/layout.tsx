@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+const assetPath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,8 +18,8 @@ export const metadata: Metadata = {
   title: "Digital Relics — 鸮尊",
   description: "文物从实体成为数据，再从点云中重新显形。",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: `${assetPath}/favicon.svg`,
+    shortcut: `${assetPath}/favicon.svg`,
   },
 };
 

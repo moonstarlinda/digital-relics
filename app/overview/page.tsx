@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+
+const assetPath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const pageHref = (path: string) => assetPath ? `${assetPath}${path}.html` : path;
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Digital Relics — 数字遗存",
@@ -9,24 +13,24 @@ export const metadata: Metadata = {
 const relics = [
   {
     key: "owl",
-    href: "/owl-zun",
-    image: "/overview/owl-zun.webp",
+    href: pageHref("/owl-zun"),
+    image: `${assetPath}/overview/owl-zun.webp`,
     title: "鸮尊",
     height: "31.1 cm",
     ratio: 31.1 / 102.9,
   },
   {
     key: "tiger",
-    href: "/zodiac-tiger",
-    image: "/overview/zodiac-tiger.webp",
+    href: pageHref("/zodiac-tiger"),
+    image: `${assetPath}/overview/zodiac-tiger.webp`,
     title: "生肖虎俑",
     height: "22.6 cm",
     ratio: 22.6 / 102.9,
   },
   {
     key: "guanyin",
-    href: "/water-moon-guanyin",
-    image: "/overview/water-moon-guanyin.webp",
+    href: pageHref("/water-moon-guanyin"),
+    image: `${assetPath}/overview/water-moon-guanyin.webp`,
     title: "水月观音",
     height: "102.9 cm",
     ratio: 1,
@@ -58,7 +62,7 @@ export default function OverviewPage() {
         <section className="scale-wall" aria-label="三件器物真实高度比例对照">
           <div className="scale-ground" aria-hidden="true" />
           {relics.map((relic) => (
-            <Link
+            <a
               className={`scale-relic scale-relic-${relic.key}`}
               href={relic.href}
               key={relic.key}
@@ -73,7 +77,7 @@ export default function OverviewPage() {
                 <strong>{relic.title}</strong>
                 <small>{relic.height}</small>
               </span>
-            </Link>
+            </a>
           ))}
         </section>
       </div>
